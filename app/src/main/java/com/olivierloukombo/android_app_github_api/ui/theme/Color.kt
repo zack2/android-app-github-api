@@ -2,7 +2,8 @@ package com.olivierloukombo.android_app_github_api.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val BrilliantAzure = Color(0xFF3683FC)
+val Water = Color(0xFFCDE0FE)
+val BlueStarlight = Color(0xFFFAFCFF)
+val MaastrichtBlue = Color(0xFF0C1E3C)
+val Indigo = Color(0xFF12355C)
