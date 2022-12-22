@@ -15,6 +15,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -49,10 +50,9 @@ fun DetailUser(navController: NavHostController, viewModel: DetailUserViewModel 
             }
         ) {
             //get the argument
-            navController.previousBackStackEntry!!.savedStateHandle.get<String>(
+            navController.previousBackStackEntry?.savedStateHandle?.get<String>(
                 "login"
             ).apply {
-                Log.i("######TAG Detail", "loadListUserRepo: $this")
                  viewModel.loadListUserRepo(this!!)
             }
             val state = viewModel.state.collectAsState()
@@ -85,56 +85,49 @@ fun CardRepo(repo: Repo) {
     val context = LocalContext.current
     Card(
         modifier = Modifier
+            .wrapContentSize()
             .padding(8.dp, 4.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(4.dp))
             .background(color = MaterialTheme.colors.onSecondary)
-            .height(140.dp)
             .clickable {
                 startActivity(context, intent, null)
             },
         shape = RoundedCornerShape(0.dp), elevation = 4.dp
     ) {
-        Surface() {
 
-            Row(
-                Modifier
-                    .padding(4.dp)
-                    .fillMaxSize()
-
-            ) {
+            Row{
 
                 Column(
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.aligned(Alignment.CenterVertically),
                     modifier = Modifier
                         .padding(4.dp)
                         .fillMaxHeight()
-                        .weight(0.8f)
+                        //.weight(0.8f)
                 ) {
                     Text(
-                        text = "name: ",
-                        style = MaterialTheme.typography.h1,
+                        text = "name :",
+                        style = MaterialTheme.typography.h2,
                         maxLines = 1,
                         overflow = TextOverflow.Clip
 
                     )
 
                     Text(
-                        text = "updated at: ",
+                        text = "updated at :",
                         style = MaterialTheme.typography.h2,
                         maxLines = 1,
                         overflow = TextOverflow.Clip
 
                     )
                     Text(
-                        text = "stargazers count: ",
+                        text = "stargazers count :",
                         style = MaterialTheme.typography.h2,
                         maxLines = 1,
                         overflow = TextOverflow.Clip
 
                     )
                     Text(
-                        text = "language: ",
+                        text = "language :",
                         style = MaterialTheme.typography.h2,
                         maxLines = 1,
                         overflow = TextOverflow.Clip
@@ -143,11 +136,11 @@ fun CardRepo(repo: Repo) {
                 }
 
                 Column(
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.aligned(Alignment.CenterVertically),
                     modifier = Modifier
                         .padding(4.dp)
                         .fillMaxHeight()
-                        .weight(0.8f)
+                       // .weight(0.8f)
                 ) {
                     Text(
                         text = repo.name,
@@ -183,7 +176,6 @@ fun CardRepo(repo: Repo) {
                 }
             }
         }
-    }
 
 }
 

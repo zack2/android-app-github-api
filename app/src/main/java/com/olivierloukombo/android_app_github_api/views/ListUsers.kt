@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -88,10 +89,9 @@ fun UserItem(navController: NavHostController, user: User) {
     Card(
         modifier = Modifier
             .wrapContentSize()
-            .padding(16.dp)
-            .clip(RoundedCornerShape(4.dp))
+            .padding(8.dp, 4.dp)
+            .fillMaxWidth()
             .background(color = MaterialTheme.colors.onSecondary)
-            .height(140.dp)
             .clickable {
                 navController.currentBackStackEntry?.savedStateHandle?.apply {
                     set("login", user.login)
@@ -102,24 +102,14 @@ fun UserItem(navController: NavHostController, user: User) {
             },
         shape = RoundedCornerShape(0.dp), elevation = 4.dp
     ) {
-        Row(modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max)) {
-            ProfilePic(user.avatar_url)
-
-
-            Column(
-                verticalArrangement = Arrangement.aligned(Alignment.CenterVertically),
-                modifier = Modifier
-                    .padding(6.dp)
-                    .fillMaxHeight()
-
+        Surface() {
+            Row(modifier = Modifier
+                .fillMaxSize()
+                .padding(4.dp),
+               // horizontalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = user.login,
-                    style = MaterialTheme.typography.h1,
-                    maxLines = 1,
-                    overflow = TextOverflow.Clip
-
-                )
+                ProfilePic(user.avatar_url)
+                profileDetail(user = user)
             }
         }
     }
@@ -129,39 +119,24 @@ fun UserItem(navController: NavHostController, user: User) {
 
 @Composable
 fun UserItemPreview(user: User) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+   // Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Card(
             modifier = Modifier
-                .wrapContentSize()
+               // .wrapContentSize()
+                .fillMaxWidth()
                 .padding(16.dp)
                 .clip(RoundedCornerShape(4.dp))
                 .background(color = MaterialTheme.colors.onSecondary),
             shape = RoundedCornerShape(0.dp), elevation = 4.dp
         ) {
-            Row(modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max)) {
-                ProfilePic(user.avatar_url)
-
-
-                Column(
-                    verticalArrangement = Arrangement.aligned(Alignment.CenterVertically),
-                    modifier = Modifier
-                        .padding(6.dp)
-                        .fillMaxHeight()
-
-                ) {
-                    Text(
-                        text = user.login,
-                        style = MaterialTheme.typography.h1,
-                        maxLines = 1,
-                        overflow = TextOverflow.Clip
-
-                    )
-                }
+            Row {
+                ProfilePic(avatarUrl = user.avatar_url)
+                profileDetail(user = user)
             }
 
         }
 
-    }
+   // }
 
 }
 
@@ -172,20 +147,41 @@ fun ProfilePic(avatarUrl: String) {
         shape = CircleShape,
         border = BorderStroke(2.dp, color = MaterialTheme.colors.onSecondary),
         modifier = Modifier
-            .size(48.dp)
-            .padding(4.dp)
+            .size(84.dp)
+           // .padding(8.dp)
+            .clip(RoundedCornerShape(corner = CornerSize(16.dp))),
+        elevation = 4.dp
     ) {
         GlideImage(
             model = avatarUrl,
             contentDescription = "Profile Image",
             modifier = Modifier
-                .size(48.dp),
+                .size(84.dp)
+               // .padding(8.dp)
+               // .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
+                    ,
             contentScale = ContentScale.Crop
         )
-
-
     }
+}
 
+@Composable
+fun profileDetail(user: User) {
+    Column(
+        verticalArrangement = Arrangement.aligned(Alignment.CenterVertically),
+        modifier = Modifier
+            .padding(6.dp)
+            .fillMaxHeight()
+
+    ) {
+        Text(
+            text = user.login,
+            style = MaterialTheme.typography.h1,
+            maxLines = 1,
+            overflow = TextOverflow.Clip
+
+        )
+    }
 }
 
 
