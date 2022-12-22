@@ -2,16 +2,37 @@ package com.olivierloukombo.android_app_github_api.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.olivierloukombo.android_app_github_api.R
 
 // Set of Material typography styles to start with
+val DmSans = FontFamily(
+    Font(R.font.dm_sans_regular),
+    Font(R.font.dm_sans_bold, FontWeight.Bold)
+)
+val colorSecondaryText = Indigo
+
 val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = DmSans,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        color = BrilliantAzure
+    ),
+    h2 = TextStyle(
+        fontFamily = DmSans,
+        fontWeight = FontWeight.ExtraLight,
+        fontSize = 16.sp,
+        color = colorSecondaryText
+    ),
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = DmSans,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 18.sp,
+        color = colorSecondaryText
     )
     /* Other default text styles to override
     button = TextStyle(
