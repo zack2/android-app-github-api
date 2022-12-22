@@ -47,4 +47,4 @@ Dillinger uses a number of open source projects to work properly:
 - ```vm``` the viewmodel
 
 ## Release
-You can find the apk  [here]()
+You can find the apk  [here](https://github.com/zack2/android-app-github-api/tree/main/app/release)
