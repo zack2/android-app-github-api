@@ -1,5 +1,5 @@
-# Build an Android app using the GitHub API (hard)
-##### Build an Android app using the GitHub API
+
+##### This is a test project that a technical recruiter asked me to do. The object is to build an Android app using the GitHub API
 
 1) Create main screen with list of users from this request [https://api.github.com/users](https://api.github.com/users)
    List item have to display such data:
